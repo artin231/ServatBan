@@ -1,2 +1,0 @@
-# ServatBan
-ServatBan
