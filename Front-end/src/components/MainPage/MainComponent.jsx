@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import {
+  HeaderList,
+  HeaderListItem,
+  HeaderListItemIcon,
+  HeaderLogoSite,
   HeaderMainDiv,
   MainDiv,
   TitleWaletDiv,
@@ -7,7 +11,9 @@ import {
   WaletDiv,
   WaletList,
   WaletListItem,
+  WaletListItemIcon,
 } from "../../styled_components/main_page.jsx";
+import { Link } from "react-router-dom";
 
 const MainComponent = () => {
   let [fetch_data, change_data] = useState(null);
@@ -34,7 +40,23 @@ const MainComponent = () => {
     return (
       <>
         <MainDiv>
-          <HeaderMainDiv></HeaderMainDiv>
+          <HeaderMainDiv>
+            <HeaderLogoSite src="/src/assets/Gemini_Generated_Image_buugkwbuugkwbuug-removebg-preview.png" />
+            <HeaderList>
+              <HeaderListItem>
+                <h1>صفحه اصلی</h1>
+                <HeaderListItemIcon src="/src/assets/home.svg" />
+              </HeaderListItem>
+              {fetch_data.map((i, index) => {
+                return (
+                  <HeaderListItem>
+                    <h1>حساب {index + 1}</h1>
+                    <HeaderListItemIcon src="/src/assets/money.svg" />
+                  </HeaderListItem>
+                );
+              })}
+            </HeaderList>
+          </HeaderMainDiv>
           <WaletDiv>
             <TitleWaletDiv>حساب ها</TitleWaletDiv>
             <WaletAddBoxIcon>+</WaletAddBoxIcon>
@@ -42,10 +64,13 @@ const MainComponent = () => {
               {fetch_data.map((i, index) => {
                 return (
                   <>
-                    <WaletListItem>
-                      <h1>walet {index}</h1>
-                      <p>value:{i.value}</p>
-                    </WaletListItem>
+                    <a href="/login" style={{ textDecoration: "none" }} target="_blank">
+                      <WaletListItem>
+                        <WaletListItemIcon src="/src/assets/money.svg" />
+                        <h1>حساب {index + 1}</h1>
+                        <p>مقدار پول : {i.value}</p>
+                      </WaletListItem>
+                    </a>
                   </>
                 );
               })}

@@ -37,10 +37,52 @@ export const HeaderMainDiv = styled.div`
   border: 2px solid #25213d;
   border-radius: 20px;
   transition: all 400ms ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: auto;
+  gap: 40px;
+  padding-top: 2%;
   &:hover {
     transform: scale(1.001);
     box-shadow: 0px 0px 30px #25213d;
   }
+`;
+
+export const HeaderLogoSite = styled.img`
+  width: 30%;
+`;
+
+export const HeaderList = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+`;
+
+export const HeaderListItem = styled.div`
+  width: 90%;
+  height: 80px;
+  background: #221e34;
+  border-radius: 20px;
+  transition: all 400ms ease;
+  color: #9080d7;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 15%;
+  cursor: pointer;
+  gap: 10%;
+  &:hover {
+    transform: translateY(-2%);
+    box-shadow: 0px 0px 30px #221e34;
+  }
+`;
+
+export const HeaderListItemIcon = styled.img`
+  width: 50px;
 `;
 
 export const TitleWaletDiv = styled.h1`
@@ -64,6 +106,13 @@ export const WaletListItem = styled.div`
   background: #221e34;
   border-radius: 30px;
   transition: all 400ms ease;
+  color: #9080d7;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
   &:hover {
     transform: translateY(-2%);
     box-shadow: 0px 0px 30px #221e34;
@@ -85,4 +134,7 @@ export const WaletAddBoxIcon = styled.div`
     transform: translateY(-2%);
     box-shadow: 0px 0px 30px #221e34;
   }
+`;
+export const WaletListItemIcon = styled.img`
+  width: 200px;
 `;
