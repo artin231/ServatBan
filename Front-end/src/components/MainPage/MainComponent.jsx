@@ -8,6 +8,11 @@ import {
   MainDiv,
   TitleWaletDiv,
   WaletAddBoxIcon,
+  WaletAddInnerModal,
+  WaletAddInnerModalButton,
+  WaletAddInnerModalCross,
+  WaletAddOuterModal,
+  WaletAssInnerModalInput,
   WaletDiv,
   WaletList,
   WaletListItem,
@@ -32,6 +37,43 @@ const MainComponent = () => {
         console.log(err);
       });
   }, []);
+  const ModalAddHandler = () => {
+    let modalOuter = document.getElementById("modalAdd");
+    modalOuter.style.display = "flex";
+    modalOuter.style.alignItems = "center";
+  };
+  const CloseModalAdd = () => {
+    let modalOuter = document.getElementById("modalAdd");
+    modalOuter.style.display = "none";
+  };
+  const SubmitModalAddManager = async () => {
+    let value = document.getElementById("ValueModalInputAdd");
+    let btn = document.getElementById("BtnSubmitModalAdd");
+    try {
+      let res = await fetch("http://localhost:5500/api/walet/insertWalet", {
+        credentials: "include",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ value: value.value }),
+      });
+      let data = await res.json();
+      if (data.status == "sucsses") {
+        window.location.reload();
+      } else if (data.error) {
+        btn.style.backgroundColor = "red";
+        btn.style.width = "90%";
+        if (data.error == "there was a error") {
+          btn.innerHTML = "مشکلی پیش آمد";
+        } else if (data.error == '\"value\" must be a number') {
+          btn.innerHTML = "مقدار وارد شده صحیح نیست";
+        } else {
+          btn.innerHTML = data.error;
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   if (!fetch_data) {
     return <h1>loading...</h1>;
   } else if (fetch_data.error) {
@@ -40,6 +82,33 @@ const MainComponent = () => {
     return (
       <>
         <MainDiv>
+          <WaletAddOuterModal id="modalAdd">
+            <WaletAddInnerModal>
+              <WaletAddInnerModalCross
+                src="/src/assets/cross.svg"
+                onClick={() => {
+                  CloseModalAdd();
+                }}
+                alt=""
+              />
+              <p>اضافه کردن حساب</p>
+              <WaletAssInnerModalInput
+                type="number"
+                id="ValueModalInputAdd"
+                name=""
+                placeholder="مقدار پول اولیه"
+              />
+              <WaletAddInnerModalButton
+                type="button"
+                onClick={() => {
+                  SubmitModalAddManager();
+                }}
+                id="BtnSubmitModalAdd"
+              >
+                submit
+              </WaletAddInnerModalButton>
+            </WaletAddInnerModal>
+          </WaletAddOuterModal>
           <HeaderMainDiv>
             <HeaderLogoSite src="/src/assets/Gemini_Generated_Image_buugkwbuugkwbuug-removebg-preview.png" />
             <HeaderList>
@@ -59,7 +128,13 @@ const MainComponent = () => {
           </HeaderMainDiv>
           <WaletDiv>
             <TitleWaletDiv>حساب ها</TitleWaletDiv>
-            <WaletAddBoxIcon>+</WaletAddBoxIcon>
+            <WaletAddBoxIcon
+              onClick={() => {
+                ModalAddHandler();
+              }}
+            >
+              +
+            </WaletAddBoxIcon>
             <WaletList>
               {fetch_data.map((i, index) => {
                 return (
@@ -68,7 +143,7 @@ const MainComponent = () => {
                       <WaletListItem>
                         <WaletListItemIcon src="/src/assets/money.svg" />
                         <h1>حساب {index + 1}</h1>
-                        <p>مقدار پول : {i.value}</p>
+                        <p>مقدار پول : {i.value} ریال</p>
                       </WaletListItem>
                     </a>
                   </>

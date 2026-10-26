@@ -138,3 +138,66 @@ export const WaletAddBoxIcon = styled.div`
 export const WaletListItemIcon = styled.img`
   width: 200px;
 `;
+
+export const WaletAddOuterModal = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: cneter;
+  z-index: 3000000;
+  backdrop-filter: blur(10px);
+`;
+
+export const WaletAddInnerModal = styled.div`
+  width: 350px;
+  height: 400px;
+  position: relative;
+  background: #3c355b;
+  color: #9080d7;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+  font-size: 40px;
+  transition: all 400ms ease;
+  &:hover {
+    transform: translateY(-2%);
+    box-shadow: 0px 0px 30px #221e34;
+  }
+`;
+
+export const WaletAssInnerModalInput = styled.input`
+  outline: none;
+  border: 3px solid #9080d7;
+  border-radius: 10px;
+  height: 40px;
+  direction: rtl;
+  font-size: 20px;
+  width: 90%;
+  background: transparent;
+  color: #9080d7;
+`;
+
+export const WaletAddInnerModalButton = styled.button`
+  width: 40%;
+  height: 50px;
+  border-radius: 30px;
+  background: #9080d7;
+  border: none;
+  font-size: 25px;
+  color: black;
+  cursor: pointer;
+`;
+
+export const WaletAddInnerModalCross = styled.img`
+  width: 50px;
+  position: absolute;
+  margin: auto;
+  top: 5%;
+  cursor: pointer;
+`;
