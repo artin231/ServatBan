@@ -113,11 +113,21 @@ export const WaletListItem = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 30px;
+  position: relative;
   &:hover {
     transform: translateY(-2%);
     box-shadow: 0px 0px 30px #221e34;
   }
 `;
+
+export const WaletListItemCross = styled.img`
+  width: 50px;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  cursor: pointer;
+`;
+
 export const WaletAddBoxIcon = styled.div`
   width: 100px;
   height: 100px;

@@ -16,6 +16,7 @@ import {
   WaletDiv,
   WaletList,
   WaletListItem,
+  WaletListItemCross,
   WaletListItemIcon,
 } from "../../styled_components/main_page.jsx";
 import { Link } from "react-router-dom";
@@ -37,6 +38,25 @@ const MainComponent = () => {
         console.log(err);
       });
   }, []);
+  const DeleteWaletHandler = async (id) => {
+    try {
+      let res = await fetch("http://localhost:5500/api/walet/delete_walet", {
+        credentials: "include",
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ walet_id: id }),
+      });
+      let data = await res.json();
+      console.log(data);
+      if (data.status == "sucsses") {
+        location.reload();
+      } else if (data.error) {
+        console.log(data.error);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const ModalAddHandler = () => {
     let modalOuter = document.getElementById("modalAdd");
     modalOuter.style.display = "flex";
@@ -118,7 +138,7 @@ const MainComponent = () => {
               </HeaderListItem>
               {fetch_data.map((i, index) => {
                 return (
-                  <HeaderListItem>
+                  <HeaderListItem key={index}>
                     <h1>حساب {index + 1}</h1>
                     <HeaderListItemIcon src="/src/assets/money.svg" />
                   </HeaderListItem>
@@ -138,15 +158,18 @@ const MainComponent = () => {
             <WaletList>
               {fetch_data.map((i, index) => {
                 return (
-                  <>
-                    <a href="/login" style={{ textDecoration: "none" }} target="_blank">
-                      <WaletListItem>
-                        <WaletListItemIcon src="/src/assets/money.svg" />
-                        <h1>حساب {index + 1}</h1>
-                        <p>مقدار پول : {i.value} ریال</p>
-                      </WaletListItem>
-                    </a>
-                  </>
+                  <WaletListItem key={index}>
+                    <WaletListItemCross
+                      src="/src/assets/cross.svg"
+                      onClick={() => {
+                        DeleteWaletHandler(i.id);
+                      }}
+                      alt=""
+                    />
+                    <WaletListItemIcon src="/src/assets/money.svg" />
+                    <h1>حساب {index + 1}</h1>
+                    <p>مقدار پول : {i.value} ریال</p>
+                  </WaletListItem>
                 );
               })}
             </WaletList>
