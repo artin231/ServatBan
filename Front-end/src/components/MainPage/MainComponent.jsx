@@ -167,7 +167,12 @@ const MainComponent = () => {
                       alt=""
                     />
                     <WaletListItemIcon src="/src/assets/money.svg" />
-                    <h1>حساب {index + 1}</h1>
+                    <a
+                      href="/login"
+                      style={{ textDecoration: "none", color: "#9080d7", fontSize: "50px" }}
+                    >
+                      حساب {index + 1}
+                    </a>
                     <p>مقدار پول : {i.value} ریال</p>
                   </WaletListItem>
                 );
