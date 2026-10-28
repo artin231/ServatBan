@@ -1,26 +1,26 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import { FuncProvider } from './context/MoneyContext';
-import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import { FuncProvider } from "./context/MoneyContext";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import WaletPage from "./pages/WaletPage";
 
 function App() {
-
   return (
     <>
       <FuncProvider>
         <Router>
           <Routes>
-            <Route path='/' element={<MainPage />} />
-            <Route path='/login' element={<LoginPage/>} />
-            <Route path='/signup' element={<SignUpPage/>} />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/walet/:waletId" element={<WaletPage />} />
           </Routes>
         </Router>
       </FuncProvider>
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;
