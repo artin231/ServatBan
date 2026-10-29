@@ -139,7 +139,12 @@ const MainComponent = () => {
               {fetch_data.map((i, index) => {
                 return (
                   <HeaderListItem key={index}>
-                    <h1>حساب {index + 1}</h1>
+                    <a
+                      style={{ fontSize: "30px", color: "unset", textDecoration: "none" }}
+                      href={`/walet/${i.id}`}
+                    >
+                      حساب {index + 1}
+                    </a>
                     <HeaderListItemIcon src="/src/assets/money.svg" />
                   </HeaderListItem>
                 );
@@ -168,7 +173,7 @@ const MainComponent = () => {
                     />
                     <WaletListItemIcon src="/src/assets/money.svg" />
                     <a
-                      href="/login"
+                      href={`/walet/${i.id}`}
                       style={{ textDecoration: "none", color: "#9080d7", fontSize: "50px" }}
                     >
                       حساب {index + 1}
