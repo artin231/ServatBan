@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import MainComponentWalet from "../components/WaletPage/MainComponent";
 
 const WaletPage = () => {
   let { waletId } = useParams();
@@ -28,7 +29,7 @@ const WaletPage = () => {
   } else {
     return (
       <>
-        <h1>{waletId}</h1>
+        <MainComponentWalet />
       </>
     );
   }
